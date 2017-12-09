@@ -34,14 +34,15 @@ from keras.datasets import mnist
 import numpy as np
 (x_train, _), (x_test, _) = mnist.load_data()
 x_train = x_train.astype('float32') / 255.
+print 'x_train shape {0}'.format(np.shape(x_train)) #(60000, 28, 28)
 x_test = x_test.astype('float32') / 255.
 x_train = x_train.reshape((len(x_train), np.prod(x_train.shape[1:])))
 x_test = x_test.reshape((len(x_test), np.prod(x_test.shape[1:])))
-print x_train.shape
-print x_test.shape
+print x_train.shape 	#(60000, 784)
+print x_test.shape 	#(10000, 784)
 
 autoencoder.fit(x_train, x_train,
-                epochs=10,
+                epochs=1,
                 batch_size=256,
                 shuffle=True,
                 validation_data=(x_test, x_test))
